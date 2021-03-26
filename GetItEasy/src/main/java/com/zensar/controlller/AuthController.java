@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.zensar.helper.JwtUtil;
 import com.zensar.model.LoginRequest;
 import com.zensar.model.LoginResponse;
-import com.zensar.model.RegisterRequest;
 import com.zensar.service.CustomUserDetailService;
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/auth")
@@ -52,25 +51,21 @@ public class AuthController {
 			throw new Exception("Bad Credentials");
 		}
 
-		UserDetails userDetails = this.service.loadUserByUsername(request.getUsername());
+		com.zensar.beans.UserDetails userDetails = this.service.loadUserByUsername(request.getUsername());
 		String token = jwtUtil.generateToken(userDetails);
+		String type = userDetails.getType();
+		String name = userDetails.getFirstName();
 		System.out.println("JWT ===>" + token);
 
-		return new ResponseEntity<LoginResponse>(new LoginResponse(token), HttpStatus.ACCEPTED);
+		return new ResponseEntity<LoginResponse>(new LoginResponse(token,type,name), HttpStatus.ACCEPTED);
 	}
-
+	
 	@PostMapping("/signup")
 	@Transactional
-	public ResponseEntity<?> createUser(@RequestBody RegisterRequest request) throws Exception {
-		com.zensar.beans.UserDetails user = new com.zensar.beans.UserDetails();
-		user.setUsername(request.getUserName());
-		user.setEmail(request.getEmail());
-		user.setPassword(passwordEncoder.encode(request.getPassword()));
-		
-
-		UserDetails user2 = service.createUser(user);
-
-		if (user2 == null) {
+	public ResponseEntity<?> createUser(@RequestBody com.zensar.beans.UserDetails request) throws Exception {
+		request.setPassword(passwordEncoder.encode(request.getPassword()));
+		UserDetails newUser = service.createUser(request);
+		if (newUser == null) {
 			throw new Exception("User not registered");
 		} else {
 			return new ResponseEntity<>(HttpStatus.CREATED);

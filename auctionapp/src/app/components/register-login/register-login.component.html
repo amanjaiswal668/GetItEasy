@@ -19,11 +19,11 @@
                     <h2 class="title">Sign in</h2>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input type="text" placeholder="Username" name="userName" [(ngModel)]="credentials.username" />
+                        <input type="text" placeholder="Username" required name="userName" [(ngModel)]="login.username" />
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input type="password" placeholder="Password" name="password" [(ngModel)]="credentials.password" />
+                        <input type="password" placeholder="Password" required name="password" [(ngModel)]="login.password" />
                     </div>
                     <mat-error>{{message}}</mat-error>
                     <input type="submit" value="Login" class="btn solid" />
@@ -37,31 +37,39 @@
 
                 <!-- SignUp Component -->
 
-                <form #userDetails="ngForm" (ngSubmit)="onSubmitSignUp()" class="sign-up-form">
+                <form #userDetails="ngForm" (ngSubmit)="onSubmitSignUp()" required class="sign-up-form">
                     <h2 class="title">Sign up</h2>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input type="text" placeholder="Username" name="userName" ngModel />
+                        <input type="text" placeholder="Username" name="userName" required [(ngModel)]="user.username" />
                     </div>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input type="text" placeholder="FirstName" name="firstName" ngModel />
+                        <input type="text" placeholder="FirstName" name="firstName" required [(ngModel)]="user.firstName" />
                     </div>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input type="text" placeholder="LastName" name="lastName" ngModel />
+                        <input type="text" placeholder="LastName" name="lastName" required [(ngModel)]="user.lastName" />
                     </div>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input type="text" placeholder="Contact" name="contactNumber" ngModel />
+                        <input type="text" placeholder="Contact" name="contactNumber" required [(ngModel)]="user.contactNumber"/>
                     </div>
                     <div class="input-field">
                         <i class="fas fa-envelope"></i>
-                        <input type="email" placeholder="Email" name="email" ngModel />
+                        <input type="email" placeholder="Email" name="email"  required [(ngModel)]="user.email" />
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input type="password" placeholder="Password" name="password" ngModel />
+                        <input type="password" placeholder="Password"  pattern=".{8,}" title="Eight or more characters" name="password" required [(ngModel)]="user.password" />
+                    </div>
+                    <div class = "checkboxes">
+                        <span>
+                        <input type="radio" id="seller" name="type" value="seller" [(ngModel)]="user.type" >
+                        <label for="male">I want to sell items</label>
+                        <input type="radio" id="buyer" name="type" value="buyer" [(ngModel)]="user.type" >
+                        <label for="female">I want to buy items</label>
+                    </span>
                     </div>
                     <input type="submit" class="btn" value="Sign up" />
                     <p class="social-text">Or Sign up with social platforms</p>

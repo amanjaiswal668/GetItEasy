@@ -27,8 +27,11 @@ public class ProductDetailServiceImpl {
 	}
 
 	public ProductDetails updateProduct(ProductDetails product) {
-		return repository.save(product);
-		
+		return repository.save(product);	
+	}
+	
+	public List<ProductDetails> getAllProductsOfUser(int userId){
+		return repository.findAllProductBySellerId(userId);
 	}
 
 	public List<ProductDetails> getAllProducts() {

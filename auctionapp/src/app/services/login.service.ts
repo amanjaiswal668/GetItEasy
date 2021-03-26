@@ -1,5 +1,7 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { LoginRequest } from '../model/login-request';
+import { User } from '../model/user';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +12,12 @@ export class LoginService {
 
   constructor(private http : HttpClient) { }
 
-  doLogin(credentials:any){
-    return this.http.post(`${this.url}/login`,credentials)
+  doLogin(login:LoginRequest){
+    return this.http.post(`${this.url}/login`,login)
+  }
+
+  doSignup(user:User){
+    return this.http.post(`${this.url}/signup`,user)
   }
 
   loginUser(token: string){
