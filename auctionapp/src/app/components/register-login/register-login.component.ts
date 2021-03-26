@@ -32,7 +32,9 @@ export class RegisterLoginComponent implements OnInit {
         (response:any)=>{
             console.log(response.token);
             this.service.loginUser(response.token)
-            window.location.href="/dashboard"
+            // window.location.href="/dashboard"
+            
+            window.location.href="/userallproduct"
         },
         error=>{
           this.message = "Username Or Password Incorrect !!!"

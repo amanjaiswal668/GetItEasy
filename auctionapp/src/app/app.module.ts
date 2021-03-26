@@ -21,6 +21,7 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
 import { SellerDashboardComponent } from './components/seller-dashboard/seller-dashboard.component';
 import { RegisterLoginComponent } from './components/register-login/register-login.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { ProductlistComponent } from './components/productlist/productlist.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { FooterComponent } from './components/footer/footer.component';
     AdminDashboardComponent,
     SellerDashboardComponent,
     RegisterLoginComponent,
-    FooterComponent
+    FooterComponent,
+    ProductlistComponent
   ],
   imports: [
     BrowserModule,

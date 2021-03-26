@@ -66,7 +66,9 @@ public class ProductDetailController {
 	
 	@GetMapping("/getAllProducts")
 	public List<ProductDetails> getAllProducts(){
-		return service.getAllProducts();
+		List<ProductDetails> allProducts = service.getAllProducts();
+		System.out.println(allProducts);
+		return allProducts;
 	}
 	
 	@ModelAttribute
