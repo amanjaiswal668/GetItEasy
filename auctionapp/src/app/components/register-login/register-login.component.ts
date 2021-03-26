@@ -33,6 +33,11 @@ export class RegisterLoginComponent implements OnInit {
         (response:any)=>{
             console.log(response.token);
             this.service.loginUser(response.token)
+
+            // window.location.href="/dashboard"
+            
+            window.location.href="/userallproduct"
+
             if (response.type === 'SELLER') {
               window.location.href="/seller"
             } else if (response.type === 'BUYER') {
@@ -42,7 +47,7 @@ export class RegisterLoginComponent implements OnInit {
             } else { 
 
             }
-           
+
         },
         error=>{
           this.message = "Username Or Password Incorrect !!!"
