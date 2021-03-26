@@ -397,4 +397,16 @@ form.sign-in-form {
     bottom: 28%;
     left: 50%;
   }
+  
 }
+.checkboxes {
+  text-align:center;
+ }
+
+.checkboxes input{
+  margin: 0px 0px 0px 0px;
+ }
+
+ .checkboxes label{
+   margin: 0px 20px 0px 3px;
+ }

@@ -23,5 +23,9 @@ public class CustomUserDetailService implements UserDetailsService{
 	public UserDetails createUser(com.zensar.beans.UserDetails user) {
 		return repository.save(user);
 	}
+	
+	public com.zensar.beans.UserDetails updateUser(com.zensar.beans.UserDetails user){
+		return repository.save(user);
+	}
 
 }

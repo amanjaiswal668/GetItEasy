@@ -1,4 +1,6 @@
 import { Component, Injectable, OnInit } from '@angular/core';
+import { LoginRequest } from 'src/app/model/login-request';
+import { User } from 'src/app/model/user';
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({
@@ -16,10 +18,9 @@ export class RegisterLoginComponent implements OnInit {
 
   message=""
 
-  credentials={
-    username:'',
-    password:''
-  }
+  login: LoginRequest = new LoginRequest;
+  user : User = new User;
+  
 
   constructor(private service:LoginService) { }
 
@@ -27,14 +28,26 @@ export class RegisterLoginComponent implements OnInit {
   }
 
   onSubmitLogin(){
-    if(this.credentials.password!='' && this.credentials.username!='' && (this.credentials.password!=null && this.credentials.username!=null)){
-      this.service.doLogin(this.credentials).subscribe(
+    if(this.login.password!='' && this.login.username!='' && (this.login.password!=null && this.login.username!=null)){
+      this.service.doLogin(this.login).subscribe(
         (response:any)=>{
             console.log(response.token);
             this.service.loginUser(response.token)
+
             // window.location.href="/dashboard"
             
             window.location.href="/userallproduct"
+
+            if (response.type === 'SELLER') {
+              window.location.href="/seller"
+            } else if (response.type === 'BUYER') {
+              window.location.href="/buyer"
+            } else if (response.type === 'ADMIN') {
+              window.location.href="/admin"
+            } else { 
+
+            }
+
         },
         error=>{
           this.message = "Username Or Password Incorrect !!!"
@@ -47,38 +60,19 @@ export class RegisterLoginComponent implements OnInit {
     }
   }
 
-
-
-
-
-
-
-
   onSubmitSignUp(){
-    if(this.credentials.password!='' && this.credentials.username!='' && (this.credentials.password!=null && this.credentials.username!=null)){
-      this.service.doLogin(this.credentials).subscribe(
-        (response:any)=>{
-            console.log(response.token);
-            this.service.loginUser(response.token)
-            window.location.href="/dashboard"
-        },
-        error=>{
-          console.log(error)
-        }
-      )
-    }else{
-      console.log("Fields are empty !!!")
+    console.log(this.user.type)
+    this.service.doSignup(this.user).subscribe(
+      (response:any)=>{  
+        //window.location.href="/login"
+    },
+    error=>{
+      this.message = "Email is already registered"
+      console.log(error)
     }
+  )
   }
 
-
-
-
-
-
-
-
-  
 
   public signUp() {
 

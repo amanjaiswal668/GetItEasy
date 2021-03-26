@@ -24,6 +24,8 @@ public class ProductDetails {
 	private LocalDateTime closingDate;
 	
 	private String url;
+	
+	private int sellerId;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -97,15 +99,19 @@ public class ProductDetails {
 		this.productId = productId;
 	}
 
+	public int getSellerId() {
+		return sellerId;
+	}
+
+	public void setSellerId(int sellerId) {
+		this.sellerId = sellerId;
+	}
+	
 	@Override
 	public String toString() {
 		return "ProductDetails [productName=" + productName + ", productType=" + productType + ", productDescription="
 				+ productDescription + ", initialBiddingAmount=" + initialBiddingAmount + ", lastBiddedAmount="
 				+ lastBiddedAmount + ", closingDate=" + closingDate + ", url=" + url + ", productId=" + productId + "]";
 	}
-
-	
-	
-
 	
 }
