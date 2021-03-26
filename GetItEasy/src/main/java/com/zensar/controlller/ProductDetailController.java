@@ -66,7 +66,14 @@ public class ProductDetailController {
 	
 	@GetMapping("/getAllProducts")
 	public List<ProductDetails> getAllProducts(){
-		return service.getAllProducts();
+		 List<ProductDetails> allProducts = service.getAllProducts();
+		 System.out.println(allProducts);
+		 return allProducts;
+	}
+	
+	@GetMapping("/getMyProducts")
+	public List<ProductDetails> getAllProductsOfLoggedInUser(){
+		return service.getAllProductsOfUser(this.loggedInUser.getUserId());
 	}
 	
 	@ModelAttribute

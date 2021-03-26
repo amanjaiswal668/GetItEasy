@@ -7,8 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.security.core.GrantedAuthority;
 
 @Entity
@@ -21,17 +19,18 @@ public class UserDetails implements Serializable,org.springframework.security.co
 
 	private String firstName;
 
-	private String userName;
+	private String username;
 
 	private String password;
 
 	private String email;
 
 	private String lastName;
-
-	private boolean isSeller;
 	
+	private String type;
 
+	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int userId;
@@ -42,26 +41,6 @@ public class UserDetails implements Serializable,org.springframework.security.co
 		super();
 	}
 
-
-
-	public UserDetails(String firstName, String userName, String password, String email, String lastName,
-			boolean isSeller, int userId, long contactNumber) {
-		super();
-		
-		System.out.println("Inside Constructor");
-		
-		this.firstName = firstName;
-		this.userName = userName;
-		this.password = password;
-		this.email = email;
-		this.lastName = lastName;
-		this.isSeller = isSeller;
-		this.userId = userId;
-		this.contactNumber = contactNumber;	
-	}
-
-
-
 	public String getFirstName() {
 		return firstName;
 	}
@@ -70,14 +49,14 @@ public class UserDetails implements Serializable,org.springframework.security.co
 		this.firstName = firstName;
 	}
 
+	
+
 	public String getUsername() {
-		return userName;
+		return username;
 	}
 
 	public void setUsername(String username) {
-		
-		System.out.println("public void setUsername(String username)");
-		this.userName = username;
+		this.username = username;
 	}
 
 	public String getPassword() {
@@ -120,30 +99,11 @@ public class UserDetails implements Serializable,org.springframework.security.co
 		this.contactNumber = contactNumber;
 	}
 
-	public boolean isSeller() {
-		return isSeller;
-	}
-
-	public void isSeller(boolean isSeller) {
-		System.out.println("public void setSeller(boolean isSeller)");
-		this.isSeller = isSeller;
-	}
-
-	@Override
-	public String toString() {
-		return "UserDetails [firstName=" + firstName + ", username=" + userName + ", password=" + password + ", email="
-				+ email + ", lastName=" + lastName + ", userId=" + userId + ", contactNumber=" + contactNumber + "]";
-	}
-
-
-
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-
 
 	@Override
 	public boolean isAccountNonExpired() {
@@ -151,15 +111,11 @@ public class UserDetails implements Serializable,org.springframework.security.co
 		return true;
 	}
 
-
-
 	@Override
 	public boolean isAccountNonLocked() {
 		// TODO Auto-generated method stub
 		return true;
 	}
-
-
 
 	@Override
 	public boolean isCredentialsNonExpired() {
@@ -167,13 +123,27 @@ public class UserDetails implements Serializable,org.springframework.security.co
 		return true;
 	}
 
-
-
 	@Override
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
 		return true;
 	}
 
+	public String getType() {
+		return type.toUpperCase();
+	}
+
+	public void setType(String type) {
+		this.type = type.toUpperCase();
+	}
+
+	@Override
+	public String toString() {
+		return "UserDetails [firstName=" + firstName + ", username=" + username + ", password=" + password + ", email="
+				+ email + ", lastName=" + lastName + ", type=" + type + ", userId=" + userId + ", contactNumber="
+				+ contactNumber + "]";
+	}
+
+	
 	
 }

@@ -16,11 +16,11 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http"
 import { LoginService } from './services/login.service';
 import { AuthGuard } from './services/auth.guard';
 import { AuthInterceptor } from './services/auth.interceptor';
-import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { SellerDashboardComponent } from './components/seller-dashboard/seller-dashboard.component';
 import { RegisterLoginComponent } from './components/register-login/register-login.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { BuyerDashboardComponent } from './components/buyer-dashboard/buyer-dashboard.component';
 
 
 @NgModule({
@@ -30,11 +30,11 @@ import { FooterComponent } from './components/footer/footer.component';
     HomeComponent,
     LoginComponent,
     DashboardComponent,
-    UserDashboardComponent,
     AdminDashboardComponent,
     SellerDashboardComponent,
     RegisterLoginComponent,
-    FooterComponent
+    FooterComponent,
+    BuyerDashboardComponent
   ],
   imports: [
     BrowserModule,

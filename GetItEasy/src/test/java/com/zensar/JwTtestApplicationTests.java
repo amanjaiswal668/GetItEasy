@@ -8,7 +8,6 @@ class JwTtestApplicationTests {
 
 	@Test
 	void contextLoads() {
-		System.out.println("Test Failed!!!");
 	}
 
 }
