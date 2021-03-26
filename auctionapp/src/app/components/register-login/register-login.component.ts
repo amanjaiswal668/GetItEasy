@@ -31,8 +31,8 @@ export class RegisterLoginComponent implements OnInit {
     if(this.login.password!='' && this.login.username!='' && (this.login.password!=null && this.login.username!=null)){
       this.service.doLogin(this.login).subscribe(
         (response:any)=>{
-            console.log(response.token);
             this.service.loginUser(response.token)
+            localStorage.setItem("name",response.name)
             if (response.type === 'SELLER') {
               window.location.href="/seller"
             } else if (response.type === 'BUYER') {
