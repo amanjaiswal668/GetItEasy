@@ -16,9 +16,7 @@ products: Product[] = [];
   constructor(private http: HttpClient, private service: ProductService, private router: Router) { }
 
   ngOnInit(): void {
-
     this.service.getAllProducts().subscribe((data) => this.products = data);
-    console.log(this.products);
   }
 
 }
