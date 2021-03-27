@@ -10,68 +10,54 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 </head>
 
 <body>
 
-    <div *ngFor="let product of products">
-        <div class="card-deck">
-            <div class="card">
+    <div class="container ">
+        <div class="wrapper slock">
+            <div class="card" style="width: auto;" *ngFor="let product of products">
                 <img class="card-img-top" src="./assets/images/river.jpg" alt="Card image cap">
                 <div class="card-body">
-                    <h5 class="card-title">Product Details</h5>
-                    <p class="card-text">{{product.productName}}</p>
+                    <h5 class="card-title">{{product.productName}}</h5>
+                    <p class="card-text">{{product.productDescription}}</p>
                 </div>
-                <div class="card-footer">
+                <div class="card-footer" *ngIf=" type=== 'SELLER'">
                     <a class="card-link" onclick="document.getElementById('id01').style.display='block'"
                         class="w3-button w3-green w3-small">Edit</a>
-                    <span><a class="card-link">Delete</a></span>
+                    <span ><a class="card-link"><i class="fa fa-trash fa-2x" aria-hidden="true"></i></a></span>
+                </div>
+
+                <div class="card-footer" *ngIf=" type=== 'BUYER'">
+                    <a class="card-link" onclick="document.getElementById('id01').style.display='block'"
+                        class="w3-button w3-green w3-small" (click)="setProduct(product)">View</a>
+                    <span><a class="card-link">Bid</a></span>
                 </div>
             </div>
-            <!-- <div class="card">
-            <img class="card-img-top" src="./assets/images/sea.jpg" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Product Details</h5>
-                <p class="card-text">{{product.productName}}</p>
-            </div>
-            <div class="card-footer">
-                <a href="#" class="card-link">Edit</a>
-                <a href="#" class="card-link">Delete</a>
-            </div>
-        </div> -->
-            <!-- <div class="card">
-            <img class="card-img-top" src="./assets/images/river.jpg" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Product Details</h5>
-                <p class="card-text">{{product.productName}}</p>
-            </div>
-            <div class="card-footer">
-
-                <a href="#" class="card-link">Edit</a>
-                <a href="#" class="card-link">Delete</a>
-
-            </div>
-        </div> -->
-
         </div>
     </div>
 
     <!-- Custom footer attached from footer component -->
-    <app-footer></app-footer>
+    <!-- <app-footer></app-footer> -->
 
+    <!-- Customs Model box for editing details (SELLER)-->
 
-    <!-- Customs Model box for editing details -->
-
-    <div id="id01" class="w3-modal">
-        <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
+    <div id="id01" class="w3-modal" *ngIf=" type=== 'SELLER'">
+        <div class="w3-modal-content w3-card-4 w3-animate-zoom custom-model" style="max-width:400px">
 
             <div class="w3-center"><br>
                 <span onclick="document.getElementById('id01').style.display='none'"
                     class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
-                <img src="./assets/images/river.jpg" alt="Avatar" style="width:30%" class="w3-circle w3-margin-top">
+                <img src="./assets/images/river.jpg" alt="Avatar" style="width:40%" class="w3-circle w3-margin-top">
             </div>
 
             <form class="w3-container" action="/action_page.php">
@@ -79,17 +65,54 @@
                     <label><b>Product name</b></label>
                     <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Product name"
                         name="usrname" required>
+                    <label><b>Product type</b></label>
+                    <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Product type"
+                        name="product" required>
                     <label><b>New Price</b></label>
-                    <input class="w3-input w3-border" type="password" placeholder="New Price" name="psw" required>
+                    <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Product type"
+                        name="product" required>
                     <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit">Submit</button>
-                    <!-- <input class="w3-check w3-margin-top" type="checkbox" checked="checked"> Remember me -->
                 </div>
             </form>
 
-            <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+            <div class="w3-container w3-border-top w3-padding-16 w3-light-grey" style="align-items: center;">
                 <button onclick="document.getElementById('id01').style.display='none'" type="button"
                     class="w3-button w3-red">Cancel</button>
-                <!-- <span class="w3-right w3-padding w3-hide-small">Forgot <a href="#">password?</a></span> -->
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Customs Model box for editing details (BUYER)-->
+
+    <div id="id01" class="w3-modal" *ngIf=" type=== 'BUYER'">
+        <div class="w3-modal-content w3-card-4 w3-animate-zoom custom-model" style="max-width:400px">
+
+            <div class="w3-center"><br>
+                <span onclick="document.getElementById('id01').style.display='none'"
+                    class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
+                <img src="./assets/images/river.jpg" alt="Avatar" style="width:40%" class="w3-circle w3-margin-top">
+            </div>
+
+            <form class="w3-container" action="/action_page.php">
+                <div class="w3-section">
+                    <label><b>Product name</b></label>
+                    <p>{{product.productName}}</p>
+                    <label><b>Product type</b></label>
+                    <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Product type"
+                        name="product" required>
+                    <label><b>Enter your amount</b></label>
+                    <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter your amount"
+                        name="product" required>
+                    <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit">Submit</button>
+                </div>
+            </form>
+
+            <div class="w3-container w3-border-top w3-padding-16 w3-light-grey" style="align-items: center;">
+                <button onclick="document.getElementById('id01').style.display='none'" type="button"
+                    class="w3-button w3-red">Cancel</button>
+
             </div>
 
         </div>

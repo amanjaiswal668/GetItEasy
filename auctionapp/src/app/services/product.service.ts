@@ -9,14 +9,20 @@ import { Product } from '../Model/product';
 export class ProductService {
 
   baseUrl = "http://localhost:8000/product";
-  constructor(private http : HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  getProduct(){
+  getProduct() {
     return this.http.get(`${this.baseUrl}/getProduct`)
   }
 
-  getAllProducts(): Observable<Product[]>{
+  getAllProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.baseUrl}/getAllProducts`)
+  }
+
+  getMyProducts(): Observable<Product[]> {
+
+    return this.http.get<Product[]>(`${this.baseUrl}/getMyProducts`)
+
   }
 
 }

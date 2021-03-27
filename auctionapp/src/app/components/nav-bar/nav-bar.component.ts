@@ -10,6 +10,8 @@ import { LoginService } from 'src/app/services/login.service';
 export class NavBarComponent implements OnInit {
 
   public loggedIn=false;
+  name = localStorage.getItem('name');
+  type = localStorage.getItem('type');
 
   constructor(private loginService : LoginService) { }
 
