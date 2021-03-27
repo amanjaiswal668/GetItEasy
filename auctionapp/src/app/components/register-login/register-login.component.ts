@@ -32,8 +32,9 @@ export class RegisterLoginComponent implements OnInit {
       this.service.doLogin(this.login).subscribe(
         (response:any)=>{
             console.log(response.token);
-            this.service.loginUser(response.token)
-
+            this.service.loginUser(response.token);
+            localStorage.setItem("name", response.name);
+            localStorage.setItem("type", response.type);
             // window.location.href="/dashboard"
             
             window.location.href="/userallproduct"

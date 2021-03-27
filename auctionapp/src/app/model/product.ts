@@ -10,7 +10,7 @@ export class Product {
 	
 	  lastBiddedAmount!: number
 
-	 LocalDateTime!: Date
+	  closingDate!: Date
 	
         url!: string
 
