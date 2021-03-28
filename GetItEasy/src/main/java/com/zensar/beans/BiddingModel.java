@@ -1,4 +1,4 @@
-package com.zensar.model;
+package com.zensar.beans;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

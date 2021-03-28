@@ -17,6 +17,7 @@ import com.zensar.service.CustomUserDetailService;
 @RequestMapping("/user")
 @RestController
 public class UserController {
+	
 	private UserDetails loggedInUser;
 
 	@Autowired
@@ -34,7 +35,7 @@ public class UserController {
 			return userService.updateUser(userDetails);
 		}
 		else {
-			throw new Exception("Product doesn't exist!!!");
+			throw new Exception("User doesn't exist!!!");
 		}
 		
 	}

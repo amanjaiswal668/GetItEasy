@@ -3,14 +3,13 @@ package com.zensar.service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.zensar.beans.BiddingModel;
 import com.zensar.beans.ProductDetails;
 import com.zensar.beans.UserDetails;
-import com.zensar.model.BiddingModel;
 import com.zensar.repository.BiddingModelRepository;
 import com.zensar.repository.ProductRepository;
 @Service
@@ -35,6 +34,7 @@ public class BiddingModelServiceImpl {
 		model.setUserId(loggedInUser.getUserId());
 		ProductDetails product = productService.getProduct(model.getProductId());
 		product.setLastBiddedAmount(model.getBidAmount());
+		model.setSellerId(product.getSellerId());
 		productService.updateProduct(product);
 		return bidModelRepository.save(model);
 	}
@@ -69,5 +69,8 @@ public class BiddingModelServiceImpl {
 		return products;
 	}
 
+	public List<BiddingModel> getAllBidDataOfProduct(int productId){
+		return bidModelRepository.findAllByProductId(productId);
+	}
 	
 }

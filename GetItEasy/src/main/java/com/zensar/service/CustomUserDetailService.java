@@ -1,5 +1,7 @@
 package com.zensar.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -26,6 +28,14 @@ public class CustomUserDetailService implements UserDetailsService{
 	
 	public com.zensar.beans.UserDetails updateUser(com.zensar.beans.UserDetails user){
 		return repository.save(user);
+	}
+	
+	public List<com.zensar.beans.UserDetails> getAllUsers() {
+		return repository.findAll();
+	}
+	
+	public com.zensar.beans.UserDetails getUserByUserId(int userId) {
+		return repository.UserDetailsByuserId(userId);
 	}
 
 }
