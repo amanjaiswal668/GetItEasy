@@ -36,6 +36,7 @@ export class ProductlistComponent implements OnInit {
       this.service.getAllProducts().subscribe((data) => this.products = data);
       console.log("NO USER");
     }
+
   }
 
   // Fetching a particular product details from the Product array.

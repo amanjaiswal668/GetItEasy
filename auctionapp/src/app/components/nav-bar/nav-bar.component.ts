@@ -17,12 +17,14 @@ export class NavBarComponent implements OnInit {
 
   constructor(private loginService : LoginService) { }
 
+
   ngOnInit(): void {
     this.loggedIn = this.loginService.isLoggedIn();
   }
 
   logoutUser(){
     this.loginService.logout()
+    localStorage.removeItem("name")
     location.reload()
   }
 }

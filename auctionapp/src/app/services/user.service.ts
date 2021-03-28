@@ -1,12 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
 import { Observable } from 'rxjs';
+
 import { User } from '../model/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+
 
   url = "http://localhost:8000/user";
 
@@ -23,4 +26,5 @@ export class UserService {
     return this.http.post<User>(`${this.url}/updateData`, user)
 
   }
+
 }
