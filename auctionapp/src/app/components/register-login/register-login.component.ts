@@ -31,14 +31,14 @@ export class RegisterLoginComponent implements OnInit {
     if(this.login.password!='' && this.login.username!='' && (this.login.password!=null && this.login.username!=null)){
       this.service.doLogin(this.login).subscribe(
         (response:any)=>{
-            this.service.loginUser(response.token)
-            localStorage.setItem("name",response.name)
 
-
+            console.log(response.token);
+            this.service.loginUser(response.token);
+            localStorage.setItem("name", response.name);
+            localStorage.setItem("type", response.type);
             // window.location.href="/dashboard"
             
             window.location.href="/userallproduct"
-
 
             if (response.type === 'SELLER') {
               window.location.href="/seller"

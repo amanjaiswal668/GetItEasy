@@ -38,11 +38,8 @@ import { BuyerDashboardComponent } from './components/buyer-dashboard/buyer-dash
     SellerDashboardComponent,
     RegisterLoginComponent,
     FooterComponent,
-
     ProductlistComponent,
-
     BuyerDashboardComponent
-
   ],
   imports: [
     BrowserModule,

@@ -8,7 +8,6 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./seller-dashboard.component.css']
 })
 export class SellerDashboardComponent implements OnInit {
-
   products: Product[] = [];
 
   constructor(private productService: ProductService) { }
