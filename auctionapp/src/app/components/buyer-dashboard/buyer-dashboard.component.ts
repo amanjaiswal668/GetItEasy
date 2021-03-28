@@ -9,6 +9,8 @@ export class BuyerDashboardComponent implements OnInit {
 
   constructor() { }
 
+  name = localStorage.getItem("name")
+
   ngOnInit(): void {
   }
 

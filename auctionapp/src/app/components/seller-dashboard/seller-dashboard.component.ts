@@ -13,7 +13,6 @@ export class SellerDashboardComponent implements OnInit {
   constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
-
     this.productService.getMyProducts().subscribe((data) => this.products = data);
   }
 
