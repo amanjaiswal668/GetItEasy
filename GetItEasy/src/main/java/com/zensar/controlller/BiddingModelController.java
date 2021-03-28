@@ -42,10 +42,12 @@ public class BiddingModelController {
 	
 	@PostMapping("/add")
 	public BiddingModel addNewBidModule(@RequestBody BidRequest request) {
+		System.out.println(request);
 		BiddingModel model = new BiddingModel();
 		model.setProductId(request.getProductId());
 		model.setBidAmount(request.getBidAmount());
 		BiddingModel biddingModel = service.addBidData(model, loggedInUser);
+		
 		
 		return biddingModel;
 	}

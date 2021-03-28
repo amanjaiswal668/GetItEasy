@@ -1,17 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BiddingRequest } from '../Model/bidding-request';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BiddinService {
 
-  url="http://localhost:8000/bid"
+  url = "http://localhost:8000/bid"
 
-  constructor(private http : HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  onBid(){
-    this.http.post
+  onBid(biddingRequest: BiddingRequest) {
+    console.log(biddingRequest);
+    return this.http.post(`${this.url}/add`, biddingRequest);
   }
 
 }
