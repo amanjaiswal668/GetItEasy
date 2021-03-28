@@ -24,12 +24,12 @@ import com.zensar.service.ProductDetailServiceImpl;
 @RequestMapping("/product")
 @RestController
 public class ProductDetailController {
-	
+
 	private UserDetails loggedInUser;
 
 	@Autowired
 	private CustomUserDetailService userService;
-	
+
 	@Autowired
 	private ProductDetailServiceImpl service;
 
@@ -42,7 +42,8 @@ public class ProductDetailController {
 		ProductDetails newProduct = service.createProduct(productDetails);
 		return new ResponseEntity<ProductDetails>(newProduct, HttpStatus.CREATED);
 	}
-	//test method
+
+	// test method
 	@GetMapping("/getProduct")
 	public ResponseEntity<ProductDetails> getProductById() {
 		ProductDetails product = service.getProduct(1);
@@ -63,22 +64,29 @@ public class ProductDetailController {
 		return new ResponseEntity<List<ProductDetails>>(product, HttpStatus.OK);
 
 	}
-	
+
 	@GetMapping("/getAllProducts")
-	public List<ProductDetails> getAllProducts(){
+	public List<ProductDetails> getAllProducts() {
 		return service.getAllProducts();
 	}
 
 	@GetMapping("/getMyProducts")
-	public List<ProductDetails> getAllProductsOfLoggedInUser(){
+	public List<ProductDetails> getAllProductsOfLoggedInUser() {
 		return service.getAllProductsOfUser(this.loggedInUser.getUserId());
 
 	}
-	
+
+	@PostMapping("/updateProduct")
+	public ResponseEntity<ProductDetails> updateProduct(@RequestBody ProductDetails productDetails) {
+		ProductDetails newProduct = service.updateProduct(productDetails);
+		return new ResponseEntity<ProductDetails>(newProduct, HttpStatus.CREATED);
+	}
+
 	@ModelAttribute
 	public void currentUserLoggedIn() {
 		String name = SecurityContextHolder.getContext().getAuthentication().getName();
 		this.loggedInUser = userService.loadUserByUsername(name);
-		
+
 	}
+
 }

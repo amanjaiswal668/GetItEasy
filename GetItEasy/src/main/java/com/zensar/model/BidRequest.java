@@ -1,12 +1,13 @@
 package com.zensar.model;
 
 public class BidRequest {
-	
+
 	private int productId;
-	
+
 	private int bidAmount;
-	
-	public BidRequest() {}
+
+	public BidRequest() {
+	}
 
 	public int getProductId() {
 		return productId;
@@ -22,6 +23,11 @@ public class BidRequest {
 
 	public void setBidAmount(int bidAmount) {
 		this.bidAmount = bidAmount;
+	}
+
+	@Override
+	public String toString() {
+		return "BidRequest [productId=" + productId + ", bidAmount=" + bidAmount + "]";
 	}
 
 }
