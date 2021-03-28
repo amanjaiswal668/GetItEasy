@@ -9,6 +9,7 @@ import { ProductlistComponent } from './components/productlist/productlist.compo
 
 import { RegisterLoginComponent } from './components/register-login/register-login.component';
 import { SellerDashboardComponent } from './components/seller-dashboard/seller-dashboard.component';
+import { UserprofileComponent } from './components/userprofile/userprofile.component';
 import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path:'seller',component:SellerDashboardComponent,pathMatch:"full",canActivate:[AuthGuard]},
   {path:'buyer',component:BuyerDashboardComponent,pathMatch:"full",canActivate:[AuthGuard]},
   {path:'admin',component:AdminDashboardComponent,pathMatch:"full",canActivate:[AuthGuard]},
+  {path:'myprofile',component:UserprofileComponent,pathMatch:"full",canActivate:[AuthGuard]},
   {path:'register',component:RegisterLoginComponent,pathMatch:"full"},
   {path:'footer',component:FooterComponent,pathMatch:"full"}
 ]; 

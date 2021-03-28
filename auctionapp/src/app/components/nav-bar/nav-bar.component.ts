@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { LoginService } from 'src/app/services/login.service';
+import { ProductlistComponent } from '../productlist/productlist.component';
 
 @Component({
   selector: 'app-nav-bar',
@@ -12,6 +13,7 @@ export class NavBarComponent implements OnInit {
   public loggedIn=false;
   name = localStorage.getItem('name');
   type = localStorage.getItem('type');
+  
 
   constructor(private loginService : LoginService) { }
 
@@ -25,5 +27,4 @@ export class NavBarComponent implements OnInit {
     localStorage.removeItem("name")
     location.reload()
   }
-
 }
