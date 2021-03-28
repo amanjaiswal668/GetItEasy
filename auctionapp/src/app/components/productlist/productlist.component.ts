@@ -25,10 +25,13 @@ export class ProductlistComponent implements OnInit {
 
       this.service.getMyProducts().subscribe((data) => this.products = data);
       console.log("SELLER");
-    } else if (this.loginService.isLoggedIn() && this.type === 'BUYER') {
+    }
+
+    else if (this.loginService.isLoggedIn() && this.type === 'BUYER') {
       this.service.getMyProducts().subscribe((data) => this.products = data);
       console.log("BUYER");
     }
+
     else {
       this.service.getAllProducts().subscribe((data) => this.products = data);
       console.log("NO USER");
@@ -38,6 +41,10 @@ export class ProductlistComponent implements OnInit {
   // Fetching a particular product details from the Product array.
   public setProduct(p: Product) {
     this.product = p;
+  }
+
+  public homeProduct() {
+    this.service.getAllProducts().subscribe((data) => this.products = data);
   }
 }
 
