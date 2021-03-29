@@ -1,11 +1,16 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BiddingRequest } from 'src/app/Model/bidding-request';
 import { Product } from 'src/app/Model/product';
 import { BiddinService } from 'src/app/services/biddin.service';
 import { LoginService } from 'src/app/services/login.service';
 import { ProductService } from 'src/app/services/product.service';
+
+@Injectable({
+  providedIn: 'root'
+
+})
 
 @Component({
   selector: 'app-productlist',
@@ -21,10 +26,14 @@ export class ProductlistComponent implements OnInit {
 
   product: Product = new Product;
   products: Product[] = [];
+  
   constructor(private http: HttpClient, private service: ProductService, private router: Router, private loginService: LoginService, private biddingService: BiddinService) { }
 
   ngOnInit(): void {
+    //this.getAllProducts();
+  }
 
+  getAllProducts(){
     if (this.loginService.isLoggedIn() && this.type === 'SELLER') {
 
       this.service.getMyProducts().subscribe((data) => this.products = data);
@@ -32,7 +41,7 @@ export class ProductlistComponent implements OnInit {
     }
 
     else if (this.loginService.isLoggedIn() && this.type === 'BUYER') {
-      this.service.getMyProducts().subscribe((data) => this.products = data);
+      this.service.getAllProducts().subscribe((data) => this.products = data);
       console.log("BUYER");
     }
 
@@ -40,7 +49,6 @@ export class ProductlistComponent implements OnInit {
       this.service.getAllProducts().subscribe((data) => this.products = data);
       console.log("NO USER");
     }
-
   }
 
   // Fetching a particular product details from the Product array.
@@ -67,6 +75,27 @@ export class ProductlistComponent implements OnInit {
     this.service.deleteProduct(id).subscribe((data) => this.message = 'Product deleted ');
     window.location.reload();
   }
+
+  searchProducts(key:any){
+      const results: Product[] = [];
+      for (const product of this.products) {
+        if (product.productName.toLowerCase().search(key.toLowerCase()) !== -1
+        || product.productType.toLowerCase().search(key.toLowerCase()) !== -1
+        || product.productDescription.toLowerCase().search(key.toLowerCase()) !== -1) {
+          results.push(product);
+        }
+      }
+      this.products = results;
+      if (results.length === 0 || !key) {
+        this.getAllProducts();
+      }
+    
+  }
+
+  getMyBiddedProducts(){
+     this.biddingService.getBuyerBiddedProducts().subscribe((data)=> this.products = data);
+
+
 }
 
-
+}
