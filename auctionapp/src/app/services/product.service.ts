@@ -29,9 +29,7 @@ export class ProductService {
 
 
   getMyProducts(): Observable<Product[]> {
-
     return this.http.get<Product[]>(`${this.baseUrl}/getMyProducts`)
-
   }
 
 }

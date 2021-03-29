@@ -3,6 +3,7 @@ package com.zensar.service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,7 +63,9 @@ public class BiddingModelServiceImpl {
 		List<ProductDetails> products = new ArrayList<>();
 		List<BiddingModel> bidDataOfUser = bidModelRepository.findByuserId(userId);
 		for(BiddingModel bidData : bidDataOfUser) {
-			ProductDetails productDetails = productRepository.getOne(bidData.getProductId());
+			Optional<ProductDetails> optionalProductDetails = productRepository.findById(userId);
+			ProductDetails productDetails = optionalProductDetails.get();
+			System.out.println(productDetails);
 			productDetails.setLastBiddedAmount(bidData.getBidAmount());
 			products.add(productDetails);
 		}
