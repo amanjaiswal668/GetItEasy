@@ -25,6 +25,9 @@ import { ProductlistComponent } from './components/productlist/productlist.compo
 
 import { BuyerDashboardComponent } from './components/buyer-dashboard/buyer-dashboard.component';
 import { UserprofileComponent } from './components/userprofile/userprofile.component';
+import { AdminUserListComponent } from './components/admin-user-list/admin-user-list.component';
+import { AdminProductListComponent } from './components/admin-product-list/admin-product-list.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
 
 
 
@@ -41,7 +44,10 @@ import { UserprofileComponent } from './components/userprofile/userprofile.compo
     FooterComponent,
     ProductlistComponent,
     BuyerDashboardComponent,
-    UserprofileComponent
+    UserprofileComponent,
+    AdminUserListComponent,
+    AdminProductListComponent,
+    AboutUsComponent
 
   ],
   imports: [

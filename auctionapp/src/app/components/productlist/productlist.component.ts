@@ -60,7 +60,12 @@ export class ProductlistComponent implements OnInit {
 
   public updateProduct() {
     this.service.updateProduct(this.product).subscribe((data) => this.message = '###===Bidding Successfull===###', error => this.message = 'Unable to bid the product:(');
+    window.location.reload();
+  }
 
+  deleteProductDetail(id: number) {
+    this.service.deleteProduct(id).subscribe((data) => this.message = 'Product deleted ');
+    window.location.reload();
   }
 }
 
