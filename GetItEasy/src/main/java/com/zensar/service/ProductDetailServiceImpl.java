@@ -37,5 +37,11 @@ public class ProductDetailServiceImpl {
 	public List<ProductDetails> getAllProducts() {
 		return repository.findAll();
 	}
+
+	public void deleteProduct(int productId) {
+		
+		repository.deleteById(productId);
+		
+	}
 	
 }

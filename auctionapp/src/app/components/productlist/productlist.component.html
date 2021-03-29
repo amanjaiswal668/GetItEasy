@@ -23,6 +23,8 @@
 
 <body>
 
+    <!-- Custom card for showing products and its details -->
+
     <div class="container ">
         <div class="wrapper slock">
             <div class="card" style="width: auto;" *ngFor="let product of products">
@@ -31,10 +33,14 @@
                     <h5 class="card-title">{{product.productName}}</h5>
                     <p class="card-text">{{product.productDescription}}</p>
                 </div>
-                <div class="card-footer" *ngIf=" type=== 'SELLER'">
+                <div class="card-footer" *ngIf=" type=== 'SELLER' || type=== 'ADMIN'">
                     <a class="card-link" onclick="document.getElementById('id01').style.display='block'"
                         class="w3-button w3-green w3-small" (click)="setProduct(product)">Edit</a>
-                    <span><a class="card-link"><i class="fa fa-trash fa-2x" aria-hidden="true"></i></a></span>
+                    <!-- <span><a class="card-link"><i class="fa fa-trash fa-2x" aria-hidden="true"></i></a></span> -->
+
+                    <a class="card-link" class="w3-button w3-deep-purple w3-small"
+                        (click)="deleteProductDetail(product.productId)">Delete</a>
+
                 </div>
 
                 <div class="card-footer" *ngIf=" type=== 'BUYER'">
@@ -46,12 +52,9 @@
         </div>
     </div>
 
-    <!-- Custom footer attached from footer component -->
-    <!-- <app-footer></app-footer> -->
-
     <!-- Customs Model box for editing details (SELLER)-->
 
-    <div id="id01" class="w3-modal" *ngIf=" type=== 'SELLER'">
+    <div id="id01" class="w3-modal" *ngIf=" type=== 'SELLER' || type==='ADMIN'">
         <div class="w3-modal-content w3-card-4 w3-animate-zoom custom-model" style="max-width:400px">
 
             <div class="w3-center"><br>
@@ -85,13 +88,6 @@
                     <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit">Submit</button>
                 </div>
             </form>
-
-            <!-- <div class="w3-container w3-border-top w3-padding-14 w3-light-grey" style="align-items: center;">
-                <button onclick="document.getElementById('id01').style.display='none'" type="button"
-                    class="w3-button w3-red">Cancel</button>
-
-            </div> -->
-
         </div>
     </div>
 
@@ -112,6 +108,8 @@
                     <p>{{product.productName}}</p>
                     <label><b>Product type</b></label>
                     <p>{{product.productName}}</p>
+                    <label><b>Highest Bid</b></label>
+                    <p>{{product.lastBiddedAmount}}</p>
                     <label><b>Enter your amount</b></label>
                     <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter your amount"
                         [(ngModel)]="bidRequest.bidAmount" name="bidAmount" required>

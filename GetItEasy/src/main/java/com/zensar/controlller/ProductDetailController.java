@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -80,6 +81,12 @@ public class ProductDetailController {
 	public ResponseEntity<ProductDetails> updateProduct(@RequestBody ProductDetails productDetails) {
 		ProductDetails newProduct = service.updateProduct(productDetails);
 		return new ResponseEntity<ProductDetails>(newProduct, HttpStatus.CREATED);
+	}
+
+	@DeleteMapping("/deleteProduct/{productId}")
+	public void deleteProduct(@PathVariable("productId") int productId) {
+
+		service.deleteProduct(productId);
 	}
 
 	@ModelAttribute

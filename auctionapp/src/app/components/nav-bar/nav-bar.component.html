@@ -17,11 +17,17 @@
       <a routerLink="userallproduct">
         <li>Product List</li>
       </a>
+      <a *ngIf="loggedIn && type=== 'ADMIN'"  routerLink="adminuserlist">
+        <li>All Users</li>
+      </a>
       <a href="#">
         <li>Trending Products</li>
       </a>
       <a *ngIf="loggedIn && type=== 'SELLER'" onclick="document.getElementById('id03').style.display='block'">
         <li>Add Product</li>
+      </a>
+      <a *ngIf="loggedIn && type=== 'ADMIN'" routerLink="adminproductlist">
+        <li>All Product</li>
       </a>
       <a *ngIf="loggedIn" routerLink="myprofile">
         <li>Edit Profile</li>

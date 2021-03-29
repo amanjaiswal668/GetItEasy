@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -47,4 +48,10 @@ public class AdminController {
 		return biddingService.getAllBidDataOfProduct(productId);
 	}
 	
+	@DeleteMapping("/deleteUser/{userId}")
+	public void deleteUser(@PathVariable("userId") int userId){
+		
+		 userService.deleteUser(userId);
+	}
+
 }

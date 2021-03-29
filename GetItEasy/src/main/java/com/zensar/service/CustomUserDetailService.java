@@ -37,5 +37,9 @@ public class CustomUserDetailService implements UserDetailsService{
 	public com.zensar.beans.UserDetails getUserByUserId(int userId) {
 		return repository.UserDetailsByuserId(userId);
 	}
+	
+	public void deleteUser(int userId) {
+		repository.deleteById(userId);
+	}
+	}
 
-}

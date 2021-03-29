@@ -6,7 +6,7 @@ import org.springframework.data.repository.query.Param;
 
 import com.zensar.beans.UserDetails;
 
-public interface UserDetailsRepository extends JpaRepository<UserDetails, Long> {
+public interface UserDetailsRepository extends JpaRepository<UserDetails, Integer> {
 
 	
 

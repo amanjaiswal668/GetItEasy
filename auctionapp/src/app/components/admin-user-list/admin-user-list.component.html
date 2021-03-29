@@ -1,0 +1,45 @@
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+    <title>Sign in & Sign up Form</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+</head>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let user of users">
+            <div class="panel panel-default userlist">
+
+                <div class="panel-body text-center">
+                    <div class="userprofile">
+                        <div class="userpic"> <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt=""
+                                class="userpicimg"> </div>
+                        <h3 class="username">{{user.firstName}} {{user.lastName}}</h3>
+                        <p>{{user.type}}</p>
+                        <p>{{user.userId}}</p>
+                    </div>
+                    <strong>Information</strong><br><br>
+                    <p>
+                        <a href="mailto:info@maxartkiller.in">{{user.email}}</a> | {{user.contactNumber}}
+                    </p>
+                    <div class="panel-footer"> <a (click)="deleteUser(user.userId)" class="btn btn-link">Delete</a> <a
+                            href="" class="btn btn-link pull-right favorite"></a> </div>
+                </div>
+            </div>
+        </div>
+    </div>

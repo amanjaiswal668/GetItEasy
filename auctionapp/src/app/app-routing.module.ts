@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AboutUsComponent } from './components/about-us/about-us.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
+import { AdminProductListComponent } from './components/admin-product-list/admin-product-list.component';
+import { AdminUserListComponent } from './components/admin-user-list/admin-user-list.component';
 import { BuyerDashboardComponent } from './components/buyer-dashboard/buyer-dashboard.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -21,8 +24,11 @@ const routes: Routes = [
   {path:'buyer',component:BuyerDashboardComponent,pathMatch:"full",canActivate:[AuthGuard]},
   {path:'admin',component:AdminDashboardComponent,pathMatch:"full",canActivate:[AuthGuard]},
   {path:'myprofile',component:UserprofileComponent,pathMatch:"full",canActivate:[AuthGuard]},
+  {path:'adminproductlist',component:AdminProductListComponent,pathMatch:"full",canActivate:[AuthGuard]},
   {path:'register',component:RegisterLoginComponent,pathMatch:"full"},
-  {path:'footer',component:FooterComponent,pathMatch:"full"}
+  {path:'footer',component:FooterComponent,pathMatch:"full"},
+  {path:'aboutus',component:AboutUsComponent,pathMatch:"full"},
+  {path:'adminuserlist',component:AdminUserListComponent,pathMatch:"full"}
 ]; 
 
 @NgModule({
