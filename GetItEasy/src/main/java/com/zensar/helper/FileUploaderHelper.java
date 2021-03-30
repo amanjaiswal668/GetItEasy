@@ -3,13 +3,15 @@ package com.zensar.helper;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 @Component
 public class FileUploaderHelper {
 	
-	public final String UPLOAD_DIR = "D:\\Auction-Master\\auctionapp\\src\\assets\\images"; 
+	@Value("${image.url}")
+	public String UPLOAD_DIR; 
 
 	public boolean uploadFile(MultipartFile file,int produId) {
 		boolean uploaded = false;

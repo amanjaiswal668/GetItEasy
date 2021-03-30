@@ -1,15 +1,15 @@
-export class ProductRequest {
+// export class ProductRequest {
    
-    productName!: String
+//     productName!: String
 
-    productType!: String
+//     productType!: String
 
-    productDescription!: String
+//     productDescription!: String
 
-    initialBiddingAmount!: number
+//     initialBiddingAmount!: number
 
-    image!: File
+//     image!: File
 
-    constructor(){}
+//     constructor(){}
   
-}
+// }
