@@ -30,7 +30,7 @@ export class ProductlistComponent implements OnInit {
   constructor(private http: HttpClient, private service: ProductService, private router: Router, private loginService: LoginService, private biddingService: BiddinService) { }
 
   ngOnInit(): void {
-    //this.getAllProducts();
+    this.getAllProducts();
   }
 
   getAllProducts(){
@@ -94,8 +94,6 @@ export class ProductlistComponent implements OnInit {
 
   getMyBiddedProducts(){
      this.biddingService.getBuyerBiddedProducts().subscribe((data)=> this.products = data);
-
-
 }
 
 }

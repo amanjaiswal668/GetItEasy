@@ -32,4 +32,15 @@ export class ProductService {
     return this.http.get<Product[]>(`${this.baseUrl}/getMyProducts`)
   }
 
+  createProduct(product : Product) : Observable<Product> {
+    return this.http.post<Product>(`${this.baseUrl}/createProduct`,product)
+  }
+
+  uploadImage(file : File,productId : any) : Observable<String> {
+    const formData = new FormData();
+    formData.append('file',file);
+    formData.append('productId',productId);
+    return this.http.post<String>(`${this.baseUrl}/upload-image`,formData);
+  }
+
 }

@@ -2,8 +2,10 @@ package com.zensar.service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,7 +29,7 @@ public class BiddingModelServiceImpl {
 
 	
 	public List<BiddingModel> getAllBidDataOfUser(int userId){
-		return bidModelRepository.findByuserId(userId);
+		return bidModelRepository.findAllByuserId(userId);
 	}
 
 	public BiddingModel addBidData(BiddingModel model, UserDetails loggedInUser) {
@@ -61,11 +63,10 @@ public class BiddingModelServiceImpl {
 	
 	public List<ProductDetails> getLoggedInBuyerProducts(int userId){
 		List<ProductDetails> products = new ArrayList<>();
-		List<BiddingModel> bidDataOfUser = bidModelRepository.findByuserId(userId);
+		List<BiddingModel> bidDataOfUser = bidModelRepository.findAllByuserId(userId);
 		for(BiddingModel bidData : bidDataOfUser) {
-			Optional<ProductDetails> optionalProductDetails = productRepository.findById(userId);
+			Optional<ProductDetails> optionalProductDetails = productRepository.findById(bidData.getProductId());
 			ProductDetails productDetails = optionalProductDetails.get();
-			System.out.println(productDetails);
 			productDetails.setLastBiddedAmount(bidData.getBidAmount());
 			products.add(productDetails);
 		}

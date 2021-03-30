@@ -26,12 +26,14 @@
     <!-- Custom card for showing products and its details -->
 
     <div class="container ">
+        <div>
         <form class="form-inline my-2 my-lg-0">
             <input type="search" (ngModelChange)="searchProducts(key.value)" #key="ngModel" ngModel
              name="key" id="searchName" class="form-control mr-sm-2" placeholder="Search products" required>
-         </form>
-         <a class="card-link" class="w3-button w3-deep-purple w3-small"
-         (click)="getMyBiddedProducts()">My Auction</a>
+             <a *ngIf="type === 'BUYER'" class="card-link" class="w3-button w3-deep-purple w3-small"
+             (click)="getMyBiddedProducts()">My Auction</a>
+        </form>
+         </div>
         <div class="wrapper slock">
             <div class="card" style="width: auto;" *ngFor="let product of products">
                 <img class="card-img-top" src="{{product.url}}" alt="Card image cap">
