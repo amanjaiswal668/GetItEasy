@@ -5,6 +5,8 @@ import { Product } from 'src/app/Model/product';
 import { BiddinService } from 'src/app/services/biddin.service';
 import { LoginService } from 'src/app/services/login.service';
 import { ProductlistComponent } from '../productlist/productlist.component';
+import {FormBuilder,FormGroup} from '@angular/forms'
+import { ProductService } from 'src/app/services/product.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,14 +19,14 @@ import { ProductlistComponent } from '../productlist/productlist.component';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
-
   public loggedIn=false;
   name = localStorage.getItem('name');
   type = localStorage.getItem('type');
+  product : Product = new Product();
+  fileToUpload !: File
+  message : any
  
-  
-
-  constructor(private loginService : LoginService,private router : Router, private biddingService : BiddinService,private productList:ProductlistComponent) { }
+  constructor(private loginService : LoginService,private router : Router, private biddingService : BiddinService,private productService : ProductService) { }
 
 
   ngOnInit(): void {
@@ -37,10 +39,16 @@ export class NavBarComponent implements OnInit {
     location.reload()
   }
 
-  getBiddedProducts(){
-    
-//    this.biddingService.getBuyerBiddedProducts().subscribe((data) => this.products = data);
-  this.productList.getMyBiddedProducts();
+  onFileSelected(event : any){
+    this.fileToUpload = event.target.files[0]
   }
+
+  createProduct(){
+    this.productService.createProduct(this.product).subscribe((data) => {
+      this.productService.uploadImage(this.fileToUpload,data.productId).subscribe((data)=> this.message = data)
+    },
+    (error)=> {this.message = error})
+  }
+
  
 }
