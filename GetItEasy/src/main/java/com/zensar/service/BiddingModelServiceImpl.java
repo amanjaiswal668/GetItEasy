@@ -63,7 +63,7 @@ public class BiddingModelServiceImpl {
 		List<ProductDetails> products = new ArrayList<>();
 		List<BiddingModel> bidDataOfUser = bidModelRepository.findByuserId(userId);
 		for(BiddingModel bidData : bidDataOfUser) {
-			Optional<ProductDetails> optionalProductDetails = productRepository.findById(userId);
+			Optional<ProductDetails> optionalProductDetails = productRepository.findById(bidData.getProductId());
 			ProductDetails productDetails = optionalProductDetails.get();
 			System.out.println(productDetails);
 			productDetails.setLastBiddedAmount(bidData.getBidAmount());

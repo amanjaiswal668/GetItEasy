@@ -26,14 +26,14 @@ export class ProductlistComponent implements OnInit {
 
   product: Product = new Product;
   products: Product[] = [];
-  
+
   constructor(private http: HttpClient, private service: ProductService, private router: Router, private loginService: LoginService, private biddingService: BiddinService) { }
 
   ngOnInit(): void {
-    //this.getAllProducts();
+    this.getAllProducts();
   }
 
-  getAllProducts(){
+  getAllProducts() {
     if (this.loginService.isLoggedIn() && this.type === 'SELLER') {
 
       this.service.getMyProducts().subscribe((data) => this.products = data);
@@ -76,26 +76,25 @@ export class ProductlistComponent implements OnInit {
     window.location.reload();
   }
 
-  searchProducts(key:any){
-      const results: Product[] = [];
-      for (const product of this.products) {
-        if (product.productName.toLowerCase().search(key.toLowerCase()) !== -1
+  searchProducts(key: any) {
+    const results: Product[] = [];
+    for (const product of this.products) {
+      if (product.productName.toLowerCase().search(key.toLowerCase()) !== -1
         || product.productType.toLowerCase().search(key.toLowerCase()) !== -1
         || product.productDescription.toLowerCase().search(key.toLowerCase()) !== -1) {
-          results.push(product);
-        }
+        results.push(product);
       }
-      this.products = results;
-      if (results.length === 0 || !key) {
-        this.getAllProducts();
-      }
-    
+    }
+    this.products = results;
+    if (results.length === 0 || !key) {
+      this.getAllProducts();
+    }
+
   }
 
-  getMyBiddedProducts(){
-     this.biddingService.getBuyerBiddedProducts().subscribe((data)=> this.products = data);
+  getMyBiddedProducts() {
+    this.biddingService.getBuyerBiddedProducts().subscribe((data) => (this.products = data));
 
-
-}
+  }
 
 }

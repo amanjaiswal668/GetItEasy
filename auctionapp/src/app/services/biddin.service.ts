@@ -19,7 +19,9 @@ export class BiddinService {
   }
 
   getBuyerBiddedProducts(): Observable<Product[]>{
-    return this.http.get<Product[]>(`${this.url}/getMyBiddedProduct`);
+   let response=  this.http.get<Product[]>(`${this.url}/getMyBiddedProduct`);
+   console.log(response);
+   return response;
   }
 
 }

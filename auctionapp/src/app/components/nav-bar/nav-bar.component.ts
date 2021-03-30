@@ -18,29 +18,23 @@ import { ProductlistComponent } from '../productlist/productlist.component';
 })
 export class NavBarComponent implements OnInit {
 
-  public loggedIn=false;
+  public loggedIn = false;
   name = localStorage.getItem('name');
   type = localStorage.getItem('type');
- 
-  
 
-  constructor(private loginService : LoginService,private router : Router, private biddingService : BiddinService,private productList:ProductlistComponent) { }
+
+
+  constructor(private loginService: LoginService, private router: Router, private biddingService: BiddinService) { }
 
 
   ngOnInit(): void {
     this.loggedIn = this.loginService.isLoggedIn();
   }
 
-  logoutUser(){
+  logoutUser() {
     this.loginService.logout()
     localStorage.removeItem("name")
     location.reload()
   }
 
-  getBiddedProducts(){
-    
-//    this.biddingService.getBuyerBiddedProducts().subscribe((data) => this.products = data);
-  this.productList.getMyBiddedProducts();
-  }
- 
 }

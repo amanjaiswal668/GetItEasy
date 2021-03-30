@@ -20,7 +20,7 @@
       <a *ngIf="loggedIn && type=== 'ADMIN'"  routerLink="adminuserlist">
         <li>All Users</li>
       </a>
-      <a (click)="getBiddedProducts()">
+      <a >
         <li>Trending Products</li>
       </a>
       <a *ngIf="loggedIn && type=== 'SELLER'"  onclick="document.getElementById('id03').style.display='block'">
