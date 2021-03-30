@@ -19,6 +19,7 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
+
   public loggedIn=false;
   name = localStorage.getItem('name');
   type = localStorage.getItem('type');
@@ -28,12 +29,11 @@ export class NavBarComponent implements OnInit {
  
   constructor(private loginService : LoginService,private router : Router, private biddingService : BiddinService,private productService : ProductService) { }
 
-
   ngOnInit(): void {
     this.loggedIn = this.loginService.isLoggedIn();
   }
 
-  logoutUser(){
+  logoutUser() {
     this.loginService.logout()
     localStorage.removeItem("name")
     location.reload()
@@ -50,5 +50,4 @@ export class NavBarComponent implements OnInit {
     (error)=> {this.message = error})
   }
 
- 
 }
