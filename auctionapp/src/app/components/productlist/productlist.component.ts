@@ -92,9 +92,9 @@ export class ProductlistComponent implements OnInit {
 
   }
 
-  getMyBiddedProducts() {
-    this.biddingService.getBuyerBiddedProducts().subscribe((data) => (this.products = data));
+  getMyBiddedProducts(){
+     this.biddingService.getBuyerBiddedProducts().subscribe((data)=> this.products = data);
+}
 
-  }
 
 }

@@ -11,7 +11,7 @@ public interface BiddingModelRepository extends JpaRepository<BiddingModel, Inte
 	
 	public BiddingModel findFirstByProductIdOrderByBidAmountDesc(int productId);
 	
-	public List<BiddingModel> findByuserId(int userId);
+	public List<BiddingModel> findAllByuserId(int userId);
 	
 	public List<BiddingModel> findAllByProductId(int productId);
 

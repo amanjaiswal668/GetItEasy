@@ -20,7 +20,7 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
 import { SellerDashboardComponent } from './components/seller-dashboard/seller-dashboard.component';
 import { RegisterLoginComponent } from './components/register-login/register-login.component';
 import { FooterComponent } from './components/footer/footer.component';
-
+import { ReactiveFormsModule } from '@angular/forms'
 import { ProductlistComponent } from './components/productlist/productlist.component';
 
 import { BuyerDashboardComponent } from './components/buyer-dashboard/buyer-dashboard.component';
@@ -28,6 +28,7 @@ import { UserprofileComponent } from './components/userprofile/userprofile.compo
 import { AdminUserListComponent } from './components/admin-user-list/admin-user-list.component';
 import { AdminProductListComponent } from './components/admin-product-list/admin-product-list.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
+
 
 
 
@@ -47,7 +48,8 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
     UserprofileComponent,
     AdminUserListComponent,
     AdminProductListComponent,
-    AboutUsComponent
+    AboutUsComponent,
+    
 
   ],
   imports: [
@@ -55,6 +57,7 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,
+    ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
     FormsModule,

@@ -20,7 +20,8 @@
       <a *ngIf="loggedIn && type=== 'ADMIN'"  routerLink="adminuserlist">
         <li>All Users</li>
       </a>
-      <a >
+      <a>
+
         <li>Trending Products</li>
       </a>
       <a *ngIf="loggedIn && type=== 'SELLER'"  onclick="document.getElementById('id03').style.display='block'">
@@ -59,22 +60,23 @@
         class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
     </div>
 
-    <form class="w3-container" action="/action_page.php">
+    <form class="w3-container" #Product (ngSubmit)=createProduct()>
       <div class="w3-section">
-        <label><b>Product name</b></label>
+        <label><b>{{message}}</b></label>
+        <label><b>Product name :</b></label>
         <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Product name" name="productName"
-          required>
+          [(ngModel)] = "product.productName"required>
         <label><b>Product type</b></label>
         <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Product type" name="productType"
-          required>
+        [(ngModel)] = "product.productType" required>
         <label><b>Product description</b></label>
         <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Product description"
-          name="productDescription" required>
+          name="productDescription" [(ngModel)] = "product.productDescription" required>
         <label><b>Initial amount</b></label>
         <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Product type"
-          name="initialBiddingAmount" required>
-        <label class="form-label" for="customFile">Default file input example</label>
-        <input type="file" class="form-control" id="customFile" />
+          name="initialBiddingAmount" [(ngModel)] = "product.initialBiddingAmount" required>
+        <label class="form-label" for="customFile">Insert a image:</label>
+        <input type="file" class="form-control" #Image id="customFile" (change)= "onFileSelected($event)" />
         <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit">Submit</button>
       </div>
     </form>

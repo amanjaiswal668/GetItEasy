@@ -14,10 +14,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.zensar.beans.ProductDetails;
 import com.zensar.beans.UserDetails;
+import com.zensar.helper.FileUploaderHelper;
+import com.zensar.model.AddProductRequest;
 import com.zensar.service.CustomUserDetailService;
 import com.zensar.service.ProductDetailServiceImpl;
 
@@ -30,6 +34,8 @@ public class ProductDetailController {
 
 	@Autowired
 	private CustomUserDetailService userService;
+	
+	
 
 	@Autowired
 	private ProductDetailServiceImpl service;
@@ -37,11 +43,17 @@ public class ProductDetailController {
 	public ProductDetailController() {
 
 	};
-
+	
 	@PostMapping("/createProduct")
 	public ResponseEntity<ProductDetails> createProduct(@RequestBody ProductDetails productDetails) {
-		ProductDetails newProduct = service.createProduct(productDetails);
-		return new ResponseEntity<ProductDetails>(newProduct, HttpStatus.CREATED);
+		ProductDetails product = service.createProduct(productDetails,loggedInUser.getUserId());
+		return new ResponseEntity<ProductDetails>(product, HttpStatus.CREATED);
+	}
+	
+	@PostMapping("/upload-image")
+	public ResponseEntity<String> uploadProductImage(@RequestParam("file") MultipartFile file,@RequestParam("productId") int productId) {
+		String message = service.uploadImage(file,productId);
+		return new ResponseEntity<String>(message,HttpStatus.CREATED);
 	}
 
 	// test method
