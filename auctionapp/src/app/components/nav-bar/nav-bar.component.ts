@@ -36,7 +36,8 @@ export class NavBarComponent implements OnInit {
   logoutUser() {
     this.loginService.logout()
     localStorage.removeItem("name")
-    location.reload()
+    this.router.navigate(['login'])
+    window.location.reload();
   }
 
   onFileSelected(event : any){

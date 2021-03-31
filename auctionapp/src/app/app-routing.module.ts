@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminLoginRegisterComponent } from './admin-login-register/admin-login-register.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
+import { AdminBiddingListComponent } from './components/admin-bidding-list/admin-bidding-list.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { AdminProductListComponent } from './components/admin-product-list/admin-product-list.component';
 import { AdminUserListComponent } from './components/admin-user-list/admin-user-list.component';
@@ -28,7 +30,9 @@ const routes: Routes = [
   {path:'register',component:RegisterLoginComponent,pathMatch:"full"},
   {path:'footer',component:FooterComponent,pathMatch:"full"},
   {path:'aboutus',component:AboutUsComponent,pathMatch:"full"},
-  {path:'adminuserlist',component:AdminUserListComponent,pathMatch:"full"}
+  {path:'adminuserlist',component:AdminUserListComponent,pathMatch:"full",canActivate:[AuthGuard]},
+  {path:'adminregister',component:AdminLoginRegisterComponent,pathMatch:"full"},
+  {path:'adminbiddinglist',component:AdminBiddingListComponent,pathMatch:"full",canActivate:[AuthGuard]}
 ]; 
 
 @NgModule({

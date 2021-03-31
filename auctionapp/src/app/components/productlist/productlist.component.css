@@ -1,12 +1,40 @@
-
-
-.slock::-webkit-scrollbar{
-  display: none;
+body *{
+ background-color: #f8f8f8;
+ overflow: hidden;
 }
 
 .custom-model{
     border-radius: 15px 50px 30px;
     
+}
+
+p{
+  font-family: 'Montserrat', sans-serif; 
+  font-size: 20px;
+  font-weight: bold;
+  /* color: #005670;
+   */
+   color: #00334e;
+}
+
+h5{
+  font-family: 'Montserrat', sans-serif; 
+  font-size: 14px;
+  font-weight: bold;
+  /* color: #005670;
+   */
+   color: #4a8594;
+   
+}
+
+#searchName{
+  background-color: antiquewhite;
+}
+
+::-webkit-scrollbar {
+  overflow: hidden;
+  width: 0;
+  background: transparent; 
 }
 
 .wrapper {
@@ -15,6 +43,7 @@
   grid-column-gap: 10px;
   grid-row-gap: 10px;
   padding: 10px;
+  overflow: hidden;
  
 }
 @media only screen and (min-width: 400px) {

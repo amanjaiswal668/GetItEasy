@@ -21,26 +21,25 @@ import com.zensar.service.CustomUserDetailService;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-	
+
 	@Autowired
 	private JwtAuthenticationFilter jwtAuthenticationFilter;
-	
-	
+
 	@Autowired
 	private CustomUserDetailService customUserDetailService;
-	
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors().disable();
 		http.csrf().disable().authorizeRequests()
-		.antMatchers("/auth/*").permitAll()
-		.anyRequest().authenticated()
-		.and()
-		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-	
+				.antMatchers("/auth/*", "/myapp/**", "/v2/api-docs", "/configuration/ui", "/swagger-resources/**",
+						"/configuration/security", "/webjars/**", "/swagger-ui.html","/product/getAllProducts")
+				.permitAll().anyRequest().authenticated().and().sessionManagement()
+				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
 		http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 	}
-	
+
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(customUserDetailService);
@@ -50,11 +49,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-	
+
 	@Bean
 	public AuthenticationManager getAuthenticationManager() throws Exception {
 		return super.authenticationManager();
 	}
 
-	
 }

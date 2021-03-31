@@ -25,6 +25,7 @@ export class RegisterLoginComponent implements OnInit {
   constructor(private service:LoginService) { }
 
   ngOnInit(): void {
+   
   }
 
   onSubmitLogin(){

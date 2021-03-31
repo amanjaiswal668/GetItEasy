@@ -28,6 +28,8 @@ import { UserprofileComponent } from './components/userprofile/userprofile.compo
 import { AdminUserListComponent } from './components/admin-user-list/admin-user-list.component';
 import { AdminProductListComponent } from './components/admin-product-list/admin-product-list.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
+import { AdminLoginRegisterComponent } from './admin-login-register/admin-login-register.component';
+import { AdminBiddingListComponent } from './components/admin-bidding-list/admin-bidding-list.component';
 
 
 
@@ -49,6 +51,8 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
     AdminUserListComponent,
     AdminProductListComponent,
     AboutUsComponent,
+    AdminLoginRegisterComponent,
+    AdminBiddingListComponent,
     
 
   ],

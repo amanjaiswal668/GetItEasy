@@ -8,23 +8,26 @@
     <span></span>
 
     <ul id="menu">
-      <a>
+      <a routerLink="">
         <li>Home</li>
       </a>
-      <a href="#">
+      <a routerLink="aboutus">
         <li>About Us</li>
       </a>
       <a routerLink="userallproduct">
         <li>Product List</li>
       </a>
-      <a *ngIf="loggedIn && type=== 'ADMIN'"  routerLink="adminuserlist">
+      <a *ngIf="loggedIn && type=== 'ADMIN'" routerLink="adminuserlist">
         <li>All Users</li>
+      </a>
+      <a *ngIf="loggedIn && type=== 'ADMIN'" routerLink="adminbiddinglist">
+        <li>Bid Details</li>
       </a>
       <a>
 
         <li>Trending Products</li>
       </a>
-      <a *ngIf="loggedIn && type=== 'SELLER'"  onclick="document.getElementById('id03').style.display='block'">
+      <a *ngIf="loggedIn && type=== 'SELLER'" onclick="document.getElementById('id03').style.display='block'">
         <li>Add Product</li>
       </a>
       <a *ngIf="loggedIn && type=== 'ADMIN'" routerLink="adminproductlist">
@@ -43,10 +46,12 @@
   <li>My Auctions</li>
   <li>GetItEasy</li>
 
-  <li><a class="checkboxes" mat-icon-button>{{name}}</a></li>
+  <li *ngIf="loggedIn"><a class="checkboxes" mat-icon-button>{{name}}</a></li>
 
-  <li><a class="checkboxes" *ngIf="loggedIn" (click)="logoutUser()" mat-icon-button>Logout</a></li>
-</ul>
+  <li *ngIf="!loggedIn" ><a class="checkboxes " routerLink="login" style="text-decoration: none; color: white; "  mat-icon-button>SignUp/SignIn</a></li>
+
+  <li *ngIf="loggedIn"><a class="checkboxes" (click)="logoutUser()" mat-icon-button>Logout</a></li>
+</ul> 
 
 
 
@@ -65,18 +70,18 @@
         <label><b>{{message}}</b></label>
         <label><b>Product name :</b></label>
         <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Product name" name="productName"
-          [(ngModel)] = "product.productName"required>
+          [(ngModel)]="product.productName" required>
         <label><b>Product type</b></label>
         <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Product type" name="productType"
-        [(ngModel)] = "product.productType" required>
+          [(ngModel)]="product.productType" required>
         <label><b>Product description</b></label>
         <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Product description"
-          name="productDescription" [(ngModel)] = "product.productDescription" required>
+          name="productDescription" [(ngModel)]="product.productDescription" required>
         <label><b>Initial amount</b></label>
         <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Product type"
-          name="initialBiddingAmount" [(ngModel)] = "product.initialBiddingAmount" required>
+          name="initialBiddingAmount" [(ngModel)]="product.initialBiddingAmount" required>
         <label class="form-label" for="customFile">Insert a image:</label>
-        <input type="file" class="form-control" #Image id="customFile" (change)= "onFileSelected($event)" />
+        <input type="file" class="form-control" #Image id="customFile" (change)="onFileSelected($event)" />
         <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit">Submit</button>
       </div>
     </form>

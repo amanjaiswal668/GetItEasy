@@ -23,6 +23,7 @@ export class ProductlistComponent implements OnInit {
   btnContainer: any;
   bidRequest: BiddingRequest = new BiddingRequest;
   message = "";
+  isLoggedIn = false;
 
   product: Product = new Product;
   products: Product[] = [];
@@ -30,6 +31,8 @@ export class ProductlistComponent implements OnInit {
   constructor(private http: HttpClient, private service: ProductService, private router: Router, private loginService: LoginService, private biddingService: BiddinService) { }
 
   ngOnInit(): void {
+    this.isLoggedIn = this.loginService.isLoggedIn();
+    // this.setLogin();
     this.getAllProducts();
   }
 
@@ -92,9 +95,22 @@ export class ProductlistComponent implements OnInit {
 
   }
 
-  getMyBiddedProducts(){
-     this.biddingService.getBuyerBiddedProducts().subscribe((data)=> this.products = data);
-}
+  getMyBiddedProducts() {
+    this.biddingService.getBuyerBiddedProducts().subscribe((data) => this.products = data);
+  }
+
+  setLogin() {
+    this.isLoggedIn = this.loginService.isLoggedIn();
+  }
+
+  // userIsLoggedIn() {
+  //   let token = localStorage.getItem("token");
+  //   if (token == undefined || token == '' || token == null) {
+  //     return false;
+  //   } else {
+  //     return true;
+  //   }
+  // }
 
 
 }
