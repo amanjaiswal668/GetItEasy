@@ -9,7 +9,13 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
 @SpringBootApplication
+@EnableSwagger2
 public class JwTtestApplication {
 
 	public static void main(String[] args) {
@@ -47,4 +53,9 @@ public class JwTtestApplication {
 		return new CorsFilter(urlBasedCorsConfigurationSource);
 	}
 
+	@Bean
+	public Docket productApi() {
+		return new Docket(DocumentationType.SWAGGER_2).select().apis(RequestHandlerSelectors.basePackage("com.zensar"))
+				.build();
+	}
 }

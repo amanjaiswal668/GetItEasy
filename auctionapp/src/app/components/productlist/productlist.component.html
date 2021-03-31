@@ -19,6 +19,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
@@ -27,13 +30,17 @@
 
     <div class="container ">
         <div>
-        <form class="form-inline my-2 my-lg-0">
-            <input type="search" (ngModelChange)="searchProducts(key.value)" #key="ngModel" ngModel
-             name="key" id="searchName" class="form-control mr-sm-2" placeholder="Search products" required>
-             <a *ngIf="type === 'BUYER'" class="card-link" class="w3-button w3-deep-purple w3-small"
-             (click)="getMyBiddedProducts()">My Auction</a>
-        </form>
-         </div>
+            <form class="form-inline my-2 my-lg-0" style="padding-top: 18px;">
+                <input type="search" (ngModelChange)="searchProducts(key.value)" #key="ngModel" ngModel name="key"
+                    id="searchName" class="form-control mr-sm-2 " placeholder="Search products" required ><br>
+
+                <a *ngIf="isLoggedIn && type === 'BUYER'" class="card-link" class="w3-button w3-deep-purple w3-small"
+                    (click)="getMyBiddedProducts()">My Auction</a>
+            </form>
+        </div>
+        <br>
+        <b><h1 style="font-family: 'Montserrat', sans-serif; color: black; font-size: 30px;">All Products</h1></b>
+        <hr>
         <div class="wrapper slock">
             <div class="card" style="width: auto;" *ngFor="let product of products">
                 <img class="card-img-top" src="{{product.url}}" alt="Card image cap">
@@ -41,7 +48,7 @@
                     <h5 class="card-title">{{product.productName}}</h5>
                     <p class="card-text">{{product.productDescription}}</p>
                 </div>
-                <div class="card-footer" *ngIf=" type=== 'SELLER' || type=== 'ADMIN'">
+                <div class="card-footer" *ngIf=" isLoggedIn &&  type=== 'SELLER' || type=== 'ADMIN'">
                     <a class="card-link" onclick="document.getElementById('id01').style.display='block'"
                         class="w3-button w3-green w3-small" (click)="setProduct(product)">Edit</a>
                     <!-- <span><a class="card-link"><i class="fa fa-trash fa-2x" aria-hidden="true"></i></a></span> -->
@@ -51,10 +58,15 @@
 
                 </div>
 
-                <div class="card-footer" *ngIf=" type=== 'BUYER'">
+                <div class="card-footer" *ngIf="type=== 'BUYER'">
                     <a class="card-link" onclick="document.getElementById('id02').style.display='block'"
                         class="w3-button w3-green w3-small" (click)="setProduct(product)">View</a>
-                    <button><a class="card-link">Bid</a></button>
+                    <button><a class="card-link" *ngIf="isLoggedIn">Bid</a></button>
+                </div>
+
+                <div class="card-footer" *ngIf="!isLoggedIn">
+                    <a class="card-link" onclick="document.getElementById('id03').style.display='block'"
+                        class="w3-button w3-green w3-small" (click)="setProduct(product)">View</a>
                 </div>
             </div>
         </div>
@@ -62,7 +74,7 @@
 
     <!-- Customs Model box for editing details (SELLER)-->
 
-    <div id="id01" class="w3-modal" *ngIf=" type=== 'SELLER' || type==='ADMIN'">
+    <div id="id01" class="w3-modal" *ngIf="isLoggedIn &&  type=== 'SELLER' || type==='ADMIN'">
         <div class="w3-modal-content w3-card-4 w3-animate-zoom custom-model" style="max-width:400px">
 
             <div class="w3-center"><br>
@@ -101,7 +113,7 @@
 
     <!-- Customs Model box for editing details (BUYER)-->
 
-    <div id="id02" class="w3-modal" *ngIf=" type=== 'BUYER'">
+    <div id="id02" class="w3-modal" *ngIf="isLoggedIn &&  type=== 'BUYER'">
         <div class="w3-modal-content w3-card-4 w3-animate-zoom custom-model" style="max-width:400px">
 
             <div class="w3-center"><br>
@@ -127,6 +139,43 @@
 
             <div class="w3-container w3-border-top w3-padding-16 w3-light-grey" style="align-items: center;">
                 <button onclick="document.getElementById('id02').style.display='none'" type="button"
+                    class="w3-button w3-red">Cancel</button>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Customs Model box for editing details (BUYER)-->
+
+    <div id="id03" class="w3-modal">
+        <div class="w3-modal-content w3-card-4 w3-animate-zoom custom-model" style="max-width:400px">
+
+            <div class="w3-center"><br>
+                <span onclick="document.getElementById('id03').style.display='none'"
+                    class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
+                <img src="{{product.url}}" alt="Avatar" style="width:40%" class="w3-circle w3-margin-top">
+            </div>
+
+            <form class="w3-container" (ngSubmit)="addBidding()" #bidform="ngForm">
+                <div class="w3-section">
+                    <label><b>Product name</b></label>
+                    <p>{{product.productName}}</p>
+                    <label><b>Product type</b></label>
+                    <p>{{product.productName}}</p>
+                    <label><b>Highest Bid</b></label>
+                    <p>{{product.lastBiddedAmount}}</p>
+                    <label><b>Enter your amount</b></label>
+                    <input class="w3-input w3-border w3-margin-bottom" type="text"
+                        placeholder="Please login to make a bid." [(ngModel)]="bidRequest.bidAmount" name="bidAmount"
+                        disabled>
+                    <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit"
+                        disabled>Submit</button>
+                </div>
+            </form>
+
+            <div class="w3-container w3-border-top w3-padding-16 w3-light-grey" style="align-items: center;">
+                <button onclick="document.getElementById('id03').style.display='none'" type="button"
                     class="w3-button w3-red">Cancel</button>
 
             </div>

@@ -16,5 +16,6 @@ export class AppComponent {
 
   ngOnInit(): void {
     this.loggedIn = this.loginService.isLoggedIn();
+    
   }
 }

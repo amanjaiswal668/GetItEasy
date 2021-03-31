@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { BidListModel } from '../Model/bid-list-model';
 import { User } from '../model/user';
 
 @Injectable({
@@ -22,7 +23,16 @@ export class AdminService {
     return this.http.delete(`${this.url}/deleteUser/${id}`);
   }
 
-  deleteProductDetail(id : number){
+  deleteProductDetail(id: number) {
     return this.http.delete(`${this.url}/admin/deleteProduct/${id}`);
+  }
+
+  getAllBidList(): Observable<BidListModel[]> {
+    return this.http.get<BidListModel[]>(`${this.url}/allBidList`);
+  }
+
+  sendMail(id: number) {
+    return this.http.get(`${this.url}/sendEmail/${id}`);
+
   }
 }
