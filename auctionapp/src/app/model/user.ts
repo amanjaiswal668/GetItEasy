@@ -10,7 +10,7 @@ export class User {
 
 	lastName!: String
     
-    type!: number
+    type!: string
 
 	 userId!: number
      

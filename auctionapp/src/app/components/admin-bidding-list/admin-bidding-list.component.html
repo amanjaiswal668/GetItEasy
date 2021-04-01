@@ -25,7 +25,7 @@
 <body>
 
     <h2>HTML Table</h2>
-
+    <h3>{{message}}</h3>
     <table>
         <tr>
             <th>Bid Id</th>
@@ -44,7 +44,9 @@
             <td>{{bidData.timeBidded | date : 'y:M:d'}} <b> Time:-</b> {{bidData.timeBidded | date: 'h:mm a'}}
             </td>
             <td>{{bidData.userId}}</td>
-            <td><button (click)="sendMail(bidData.bidId)">Email</button></td>
+            <a class="card-link" class="w3-button w3-deep-purple w3-small"
+            (click)="sendEmail(bidData.bidId)">Send Email</a>
+
 
         </tr>
 

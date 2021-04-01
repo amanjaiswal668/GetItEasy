@@ -8,10 +8,9 @@ import com.zensar.beans.BiddingModel;
 
 public interface BiddingModelRepository extends JpaRepository<BiddingModel, Integer> {
 	
+	public List<BiddingModel> findByUserId(int userId);
 	
 	public BiddingModel findFirstByProductIdOrderByBidAmountDesc(int productId);
-	
-	public List<BiddingModel> findAllByuserId(int userId);
 	
 	public List<BiddingModel> findAllByProductId(int productId);
 

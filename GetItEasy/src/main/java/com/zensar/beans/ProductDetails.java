@@ -35,6 +35,24 @@ public class ProductDetails {
 		super();
 	}
 
+	
+	
+	public ProductDetails(String productName, String productType, String productDescription, int initialBiddingAmount,
+			int lastBiddedAmount, LocalDateTime closingDate, String url, int sellerId, int productId) {
+		super();
+		this.productName = productName;
+		this.productType = productType;
+		this.productDescription = productDescription;
+		this.initialBiddingAmount = initialBiddingAmount;
+		this.lastBiddedAmount = lastBiddedAmount;
+		this.closingDate = closingDate;
+		this.url = url;
+		this.sellerId = sellerId;
+		this.productId = productId;
+	}
+
+
+
 	public String getProductName() {
 		return productName;
 	}

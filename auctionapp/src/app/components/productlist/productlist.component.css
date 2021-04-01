@@ -1,6 +1,6 @@
 body *{
  background-color: #f8f8f8;
- overflow: hidden;
+ /* overflow: hidden; */
 }
 
 .custom-model{
@@ -32,8 +32,8 @@ h5{
 }
 
 ::-webkit-scrollbar {
-  overflow: hidden;
-  width: 0;
+  /* overflow: hidden;
+  width: 0; */
   background: transparent; 
 }
 

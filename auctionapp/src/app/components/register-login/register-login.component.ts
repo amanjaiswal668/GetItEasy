@@ -1,4 +1,5 @@
 import { Component, Injectable, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoginRequest } from 'src/app/model/login-request';
 import { User } from 'src/app/model/user';
 import { LoginService } from 'src/app/services/login.service';
@@ -22,7 +23,7 @@ export class RegisterLoginComponent implements OnInit {
   user : User = new User;
   
 
-  constructor(private service:LoginService) { }
+  constructor(private service:LoginService,private router : Router) { }
 
   ngOnInit(): void {
    

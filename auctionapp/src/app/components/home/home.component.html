@@ -1,1 +1,90 @@
-<app-productlist></app-productlist>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+    <title>Sign in & Sign up Form</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <!-- Custom card for showing products and its details -->
+
+    <div class="container ">
+        <div>
+            <form class="form-inline my-2 my-lg-0" style="padding-top: 18px;">
+                <input type="search" (ngModelChange)="searchProducts(key.value)" #key="ngModel" ngModel name="key"
+                    id="searchName" class="form-control mr-sm-2 " placeholder="Search products" required><br>
+            </form>
+        </div>
+        <br>
+        <b>
+            <h1 style="font-family: 'Montserrat', sans-serif; color: black; font-size: 30px;">All Products</h1>
+        </b>
+        <hr>
+        <div class="wrapper slock">
+            <div class="card" style="width: right;" *ngFor="let product of products">
+                <img class="card-img-top" src="{{product.url}}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{product.productName}}</h5>
+                    <p class="card-text">{{product.productType}}</p>
+                    <p class="card-text">{{product.productDescription}}</p>
+                </div>
+                <div class="card-footer">
+                    <a class="card-link" onclick="document.getElementById('id09').style.display='block'"
+                        class="w3-button w3-green w3-small" (click)="setProduct(product)">View</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Model to view Data to home to bid they have to logged in -->
+    <div id="id09" class="w3-modal">
+        <div class="w3-modal-content w3-card-4 w3-animate-zoom custom-model" style="max-width:400px">
+
+            <div class="w3-center"><br>
+                <span onclick="document.getElementById('id09').style.display='none'"
+                    class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
+                <img src="{{product.url}}" alt="Avatar" style="width:40%" class="w3-circle w3-margin-top">
+            </div>
+
+            <form class="w3-container">
+                <div class="w3-section">
+                    <label><b>Product name</b></label>
+                    <p>{{product.productName}}</p>
+                    <label><b>Product type</b></label>
+                    <p>{{product.productName}}</p>
+                    <label><b>Highest Bid</b></label>
+                    <p>{{product.lastBiddedAmount}}</p>
+                    <label><b>Enter your amount</b></label>
+                    <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="You must be a Buyer to submit bid"
+                    name="bidAmount" required disabled>
+                    <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit" disabled>Submit</button>
+                </div>
+            </form>
+            <div class="w3-container w3-border-top w3-padding-16 w3-light-grey" style="align-items: center;">
+                <button onclick="document.getElementById('id09').style.display='none'" type="button"
+                    class="w3-button w3-red">Cancel</button>
+
+            </div>
+
+        </div>
+    </div>
+</body>
+<app-footer></app-footer>

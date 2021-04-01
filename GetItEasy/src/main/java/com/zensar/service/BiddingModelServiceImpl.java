@@ -29,7 +29,7 @@ public class BiddingModelServiceImpl {
 	private ProductRepository productRepository;
 
 	public List<BiddingModel> getAllBidDataOfUser(int userId) {
-		return bidModelRepository.findAllByuserId(userId);
+		return bidModelRepository.findByUserId(userId);
 	}
 
 	public BiddingModel addBidData(BiddingModel model, UserDetails loggedInUser) {
@@ -63,15 +63,20 @@ public class BiddingModelServiceImpl {
 
 	public List<ProductDetails> getLoggedInBuyerProducts(int userId) {
 		List<ProductDetails> products = new ArrayList<>();
-		List<BiddingModel> bidDataOfUser = bidModelRepository.findAllByuserId(userId);
-		for (BiddingModel bidData : bidDataOfUser) {
-			Optional<ProductDetails> optionalProductDetails = productRepository.findById(bidData.getProductId());
-			ProductDetails productDetails = optionalProductDetails.get();
-			productDetails.setLastBiddedAmount(bidData.getBidAmount());
-			products.add(productDetails);
-		}
-		return products;
-	}
+		List<BiddingModel> bidDataOfUser = bidModelRepository.findByUserId(userId);
+	  for (BiddingModel bidData : bidDataOfUser) { ProductDetails productDetails =
+	  productRepository.getOne(bidData.getProductId()); ProductDetails cloned = new
+	  ProductDetails(productDetails.getProductName(),
+	  productDetails.getProductType(), productDetails.getProductDescription(),
+	  productDetails.getInitialBiddingAmount(),
+	  bidData.getBidAmount(), productDetails.getClosingDate(),
+	  productDetails.getUrl(), productDetails.getSellerId(),
+	  productDetails.getProductId());
+	  
+	  products.add(cloned); } System.out.println(products);
+	  
+	  return products; }
+	 
 
 	public List<BiddingModel> getAllBidDataOfProduct(int productId) {
 		return bidModelRepository.findAllByProductId(productId);
