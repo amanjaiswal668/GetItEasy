@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoginService } from './services/login.service';
 
 @Component({
@@ -12,10 +13,19 @@ export class AppComponent {
 
   public loggedIn = false;
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService,private router:Router) { }
+
+  
 
   ngOnInit(): void {
     this.loggedIn = this.loginService.isLoggedIn();
-    
+  }
+
+  isRegister(){
+    return this.router.url === '/register';
+  }
+
+  isLogin(){
+    return this.router.url === '/login';
   }
 }

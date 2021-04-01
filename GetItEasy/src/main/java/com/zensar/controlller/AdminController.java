@@ -3,6 +3,8 @@ package com.zensar.controlller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.zensar.beans.BiddingModel;
 import com.zensar.beans.UserDetails;
+import com.zensar.service.AdminService;
 import com.zensar.service.BiddingModelServiceImpl;
 import com.zensar.service.CustomUserDetailService;
 import com.zensar.service.ProductDetailServiceImpl;
@@ -28,6 +31,9 @@ public class AdminController {
 	
 	@Autowired
 	private BiddingModelServiceImpl biddingService;
+	
+	@Autowired
+	private AdminService adminService;
 	
 	@RequestMapping("/getAllUsers")
 	public List<UserDetails> getAllUsers(){
@@ -58,6 +64,12 @@ public class AdminController {
 	@GetMapping("/allBidList")
 	public List<BiddingModel> getBidList(){
 		return biddingService.getAllBidList();
+	}
+	
+	@GetMapping("/sendEmail/{bidId}")
+	public ResponseEntity<?> sendMail(@PathVariable("bidId") int bidId) {
+		adminService.sendEmail(bidId);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
 }

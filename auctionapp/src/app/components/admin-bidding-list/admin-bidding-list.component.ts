@@ -8,7 +8,7 @@ import { AdminService } from 'src/app/services/admin.service';
   styleUrls: ['./admin-bidding-list.component.css']
 })
 export class AdminBiddingListComponent implements OnInit {
-
+  message = '';
   bidList: BidListModel[] = [];
   constructor(private adminService: AdminService) { }
 
@@ -18,6 +18,6 @@ export class AdminBiddingListComponent implements OnInit {
   }
 
   sendEmail(id: number){
-    this.adminService.sendMail(id);
+    this.adminService.sendMail(id).subscribe((data)=>this.message = 'Email Sent')
   }
 }
